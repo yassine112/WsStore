@@ -96,7 +96,11 @@ public class WebServiceView extends VerticalLayout implements View {
 	@Subscribe
 	void updatGrid(WebServiceEvent e) {
 		displayGrid(domaineBean);
-		this.getUI().getUI().removeWindow(webServicePopUp);
+		try {
+			this.getUI().getUI().removeWindow(webServicePopUp);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 
 	@Override
@@ -144,7 +148,8 @@ public class WebServiceView extends VerticalLayout implements View {
 	public List<WebServiceBean> getWebServices(String stringFilter) {
 		List<WebServiceBean> webService = new ArrayList<>();
 		for (WebServiceBean w : WebServices) {
-			boolean passesFilter = (stringFilter == null || stringFilter.isEmpty()) || w.searchString().toLowerCase().contains(stringFilter.toLowerCase());
+			boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
+					|| w.searchString().toLowerCase().contains(stringFilter.toLowerCase());
 			if (passesFilter) {
 				webService.add(w);
 			}
