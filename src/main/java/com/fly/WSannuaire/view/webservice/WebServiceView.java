@@ -128,11 +128,12 @@ public class WebServiceView extends VerticalLayout implements View {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void settingGrid() {
-		grid.setColumns("name", "urlBroker", "description", "methode", "developper");
+//		grid.setColumns("name", "urlBroker", "description", "methode", "developper");
+		grid.setColumns("name", "description", "methode", "developper");
 		grid.getColumn("name").setCaption("Nom").setRenderer(new ButtonRenderer(e -> {
 			showPopUp((WebServiceBean) e.getItem());
 		}));
-		grid.getColumn("urlBroker").setCaption("Url Broker");
+//		grid.getColumn("urlBroker").setCaption("Url Broker");
 		grid.getColumn("description").setCaption("Description");
 		grid.getColumn("methode").setCaption("Methode");
 		grid.getColumn("developper").setCaption("Développeur");

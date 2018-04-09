@@ -9,6 +9,7 @@ import com.fly.WSannuaire.events.ServerEvent;
 import com.fly.WSannuaire.service.ServerServices;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -21,6 +22,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class ServerForm extends FormLayout {
 	private static final long serialVersionUID = 1L;
+	private Button btnHideForm;
 	private TextField tfIp;
 	private TextField tfName;
 	private TextField tfSysExp;
@@ -48,6 +50,7 @@ public class ServerForm extends FormLayout {
 		types.add("Prod");
 
 		setSizeUndefined();
+		btnHideForm = new Button();
 		tfIp = new TextField("Adress IP");
 		tfName = new TextField("Nom");
 		tfSysExp = new TextField("système d'exploitation");
@@ -65,6 +68,13 @@ public class ServerForm extends FormLayout {
 		cbType.setWidth("250px");
 		remarque.setWidth("250px");
 
+		btnHideForm.setId("closeBtn");
+		btnHideForm.setIcon(VaadinIcons.CLOSE);
+		btnHideForm.addStyleName(ValoTheme.BUTTON_LINK);
+		btnHideForm.addClickListener(e -> {
+			setVisible(false);
+		});
+		
 		btnSave = new Button("enregistrer");
 		btnDelete = new Button("supprimer");
 
@@ -72,7 +82,7 @@ public class ServerForm extends FormLayout {
 		btnSave.setClickShortcut(KeyCode.ENTER);
 
 		buttons.addComponents(btnSave, btnDelete);
-		addComponents(tfIp, tfName, tfSysExp, localisation, cbType, remarque, buttons);
+		addComponents(btnHideForm, tfIp, tfName, tfSysExp, localisation, cbType, remarque, buttons);
 
 		btnSave.addClickListener(e -> addOrSave());
 		btnDelete.addClickListener(e -> delete());

@@ -28,8 +28,8 @@ public class WebServiceForm extends FormLayout {
 	private static final long serialVersionUID = 1L;
 	private TextField tfName;
 	private TextArea taDescription;
-	private TextField tfUrlDirect;
-	private TextField tfUrlBroker;
+//	private TextField tfUrlDirect;
+//	private TextField tfUrlBroker;
 	private ComboBox<String> cbMethode;
 	private TextArea taMsgEntree;
 	private TextArea taMsgRetour;
@@ -51,8 +51,8 @@ public class WebServiceForm extends FormLayout {
 
 		tfName = new TextField("Nom");
 		taDescription = new TextArea("Description");
-		tfUrlDirect = new TextField("Url Direct");
-		tfUrlBroker = new TextField("Url Broker");
+//		tfUrlDirect = new TextField("Url Direct");
+//		tfUrlBroker = new TextField("Url Broker");
 		cbMethode = new ComboBox<String>("Methode");
 		taMsgEntree = new TextArea("Message D'entrée");
 		taMsgRetour = new TextArea("Message De retour");
@@ -60,8 +60,8 @@ public class WebServiceForm extends FormLayout {
 
 		tfName.setWidth(100, Unit.PERCENTAGE);
 		taDescription.setWidth(100, Unit.PERCENTAGE);
-		tfUrlDirect.setWidth(100, Unit.PERCENTAGE);
-		tfUrlBroker.setWidth(100, Unit.PERCENTAGE);
+//		tfUrlDirect.setWidth(100, Unit.PERCENTAGE);
+//		tfUrlBroker.setWidth(100, Unit.PERCENTAGE);
 		cbMethode.setWidth(100, Unit.PERCENTAGE);
 		taMsgEntree.setWidth(100, Unit.PERCENTAGE);
 		taMsgRetour.setWidth(100, Unit.PERCENTAGE);
@@ -82,7 +82,8 @@ public class WebServiceForm extends FormLayout {
 
 		bindingData();
 
-		addComponents(tfName, taDescription, tfUrlDirect, tfUrlBroker, cbMethode, taMsgEntree, taMsgRetour, tfDevelopper, buttons);
+//		addComponents(tfName, taDescription, tfUrlDirect, tfUrlBroker, cbMethode, taMsgEntree, taMsgRetour, tfDevelopper, buttons);
+		addComponents(tfName, taDescription, cbMethode, taMsgEntree, taMsgRetour, tfDevelopper, buttons);
 	}
 
 	public void setCustomer(WebServiceBean webService) {
@@ -98,8 +99,8 @@ public class WebServiceForm extends FormLayout {
 	void bindingData() {
 		binder.forField(tfName).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getName, WebServiceBean::setName);
 		binder.forField(taDescription).bind(WebServiceBean::getDescription, WebServiceBean::setDescription);
-		binder.forField(tfUrlDirect).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getUrlDirect, WebServiceBean::setUrlDirect);
-		binder.forField(tfUrlBroker).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getUrlBroker, WebServiceBean::setUrlBroker);
+//		binder.forField(tfUrlDirect).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getUrlDirect, WebServiceBean::setUrlDirect);
+//		binder.forField(tfUrlBroker).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getUrlBroker, WebServiceBean::setUrlBroker);
 		binder.forField(cbMethode).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getMethode, WebServiceBean::setMethode);
 		binder.forField(taMsgEntree).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getMsgEntree, WebServiceBean::setMsgEntree);
 		binder.forField(taMsgRetour).asRequired("Ce champ est obligatoire").bind(WebServiceBean::getMsgRetour, WebServiceBean::setMsgRetour);
@@ -129,12 +130,12 @@ public class WebServiceForm extends FormLayout {
 		if (taDescription.isEmpty()) {
 			taDescription.setComponentError(new UserError("Ce champ est obligatoire"));
 		}
-		if (tfUrlDirect.isEmpty()) {
-			tfUrlDirect.setComponentError(new UserError("Ce champ est obligatoire"));
-		}
-		if (tfUrlBroker.isEmpty()) {
-			tfUrlBroker.setComponentError(new UserError("Ce champ est obligatoire"));
-		}
+//		if (tfUrlDirect.isEmpty()) {
+//			tfUrlDirect.setComponentError(new UserError("Ce champ est obligatoire"));
+//		}
+//		if (tfUrlBroker.isEmpty()) {
+//			tfUrlBroker.setComponentError(new UserError("Ce champ est obligatoire"));
+//		}
 		if (cbMethode.isEmpty()) {
 			cbMethode.setComponentError(new UserError("Ce champ est obligatoire"));
 		}

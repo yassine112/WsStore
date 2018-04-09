@@ -80,7 +80,7 @@ public class UserView extends VerticalLayout implements View {
 			form.setCustomer(new UserBean());
 			form.enabledDelete(true);
 		});
-
+		
 		HorizontalLayout hl = new HorizontalLayout(filterLayout, btnAddNew);
 		displayGrid();
 		addComponents(hl, mainLayout);

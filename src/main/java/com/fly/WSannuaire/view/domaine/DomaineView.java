@@ -120,8 +120,9 @@ public class DomaineView extends VerticalLayout implements View {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void settingGrid() {
 
-		grid.setColumns("name", "description", "idProject");
+		grid.setColumns("name", "domaineUrl", "description", "idProject");
 		grid.getColumn("description").setCaption("Description");
+		grid.getColumn("domaineUrl").setCaption("Url");
 		grid.getColumn("idProject").setCaption("Projet");
 		grid.getColumn("name").setCaption("Nom").setRenderer(new ButtonRenderer(e -> {
 

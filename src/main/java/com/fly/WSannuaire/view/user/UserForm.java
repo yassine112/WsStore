@@ -8,6 +8,7 @@ import com.fly.WSannuaire.events.UserEvent;
 import com.fly.WSannuaire.service.UserServices;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Page;
 import com.vaadin.server.UserError;
 import com.vaadin.shared.Position;
@@ -25,6 +26,7 @@ import com.vaadin.ui.themes.ValoTheme;
  */
 public class UserForm extends FormLayout {
 	private static final long serialVersionUID = 1L;
+	private Button btnHideForm;
 	private TextField tfFname;
 	private TextField tfLname;
 	private TextField tfLogin;
@@ -39,10 +41,18 @@ public class UserForm extends FormLayout {
 		HorizontalLayout buttons = new HorizontalLayout();
 
 		setSizeUndefined();
+		btnHideForm = new Button();
 		tfFname = new TextField("Prénom");
 		tfLname = new TextField("Nom");
 		tfLogin = new TextField("Login");
 		pfPassWord = new PasswordField("Mot de pass");
+		
+		btnHideForm.setId("closeBtn");
+		btnHideForm.setIcon(VaadinIcons.CLOSE);
+		btnHideForm.addStyleName(ValoTheme.BUTTON_LINK);
+		btnHideForm.addClickListener(e -> {
+			setVisible(false);
+		});
 
 		tfFname.setWidth("250px");
 		tfLname.setWidth("250px");
@@ -56,8 +66,8 @@ public class UserForm extends FormLayout {
 		btnSave.setClickShortcut(KeyCode.ENTER);
 
 		buttons.addComponents(btnSave, btnDelete);
-		addComponents(tfFname, tfLname, tfLogin, pfPassWord, buttons);
-
+		addComponents(btnHideForm, tfFname, tfLname, tfLogin, pfPassWord, buttons);
+		
 		btnSave.addClickListener(e -> addOrSave());
 		btnDelete.addClickListener(e -> delete());
 

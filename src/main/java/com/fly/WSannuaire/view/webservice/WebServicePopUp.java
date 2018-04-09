@@ -27,7 +27,7 @@ public class WebServicePopUp extends Window {
 	
 	void settingWindow() {
 		setWidth(60, Unit.PERCENTAGE);
-		setHeight(80, Unit.PERCENTAGE);
+//		setHeight(80, Unit.PERCENTAGE);
 		setResizable(false);
 		setModal(true);
 		center();

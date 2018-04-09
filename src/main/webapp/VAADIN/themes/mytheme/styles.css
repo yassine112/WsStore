@@ -14776,3 +14776,9 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	color: #197de1;
 }
+
+.mytheme #closeBtn {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}

@@ -9,6 +9,7 @@ import com.fly.WSannuaire.events.DataBaseEvent;
 import com.fly.WSannuaire.service.DataBaseServices;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -22,6 +23,7 @@ import com.vaadin.ui.themes.ValoTheme;
 public class DataBaseForm extends FormLayout {
 
 	private static final long serialVersionUID = 1L;
+	private Button btnHideForm;
 	private TextField tfUrl;
 	private TextField tfName;
 	private TextField tfLogin;
@@ -39,6 +41,7 @@ public class DataBaseForm extends FormLayout {
 		HorizontalLayout buttons = new HorizontalLayout();
 
 		setSizeUndefined();
+		btnHideForm = new Button();
 		tfUrl = new TextField("URL");
 		tfName = new TextField("Nom");
 		tfLogin = new TextField("Login");
@@ -58,6 +61,13 @@ public class DataBaseForm extends FormLayout {
 		cbType.setWidth("250px");
 		taRemarque.setWidth("250px");
 
+		btnHideForm.setId("closeBtn");
+		btnHideForm.setIcon(VaadinIcons.CLOSE);
+		btnHideForm.addStyleName(ValoTheme.BUTTON_LINK);
+		btnHideForm.addClickListener(e -> {
+			setVisible(false);
+		});
+		
 		cbType.setItems(types);
 
 		btnSave = new Button("enregistrer");
@@ -67,7 +77,7 @@ public class DataBaseForm extends FormLayout {
 		btnSave.setClickShortcut(KeyCode.ENTER);
 
 		buttons.addComponents(btnSave, btnDelete);
-		addComponents(tfUrl, tfName, tfLogin, pfPassWord, cbType, taRemarque, buttons);
+		addComponents(btnHideForm, tfUrl, tfName, tfLogin, pfPassWord, cbType, taRemarque, buttons);
 
 		btnSave.addClickListener(e -> addOrSave());
 		btnDelete.addClickListener(e -> delete());

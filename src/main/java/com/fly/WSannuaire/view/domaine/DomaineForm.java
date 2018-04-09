@@ -7,6 +7,7 @@ import com.fly.WSannuaire.events.DomaineEvent;
 import com.fly.WSannuaire.service.DomaineServices;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
@@ -18,8 +19,9 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class DomaineForm extends FormLayout {
 	private static final long serialVersionUID = 1L;
-
+	private Button btnHideForm;
 	private TextField tfName;
+	private TextField tfUrl;
 	private TextArea taDescription;
 
 	private Button btnSave, btnDelete;
@@ -37,11 +39,21 @@ public class DomaineForm extends FormLayout {
 		HorizontalLayout buttons = new HorizontalLayout();
 
 		setSizeUndefined();
+		btnHideForm = new Button();
 		tfName = new TextField("Nom Domaine");
+		tfUrl = new TextField("Url Domaine");
 		taDescription = new TextArea("Description");
 
 		tfName.setWidth(250, Unit.PIXELS);
+		tfUrl.setWidth(250, Unit.PIXELS);
 		taDescription.setWidth(250, Unit.PIXELS);
+		
+		btnHideForm.setId("closeBtn");
+		btnHideForm.setIcon(VaadinIcons.CLOSE);
+		btnHideForm.addStyleName(ValoTheme.BUTTON_LINK);
+		btnHideForm.addClickListener(e -> {
+			setVisible(false);
+		});
 
 		btnSave = new Button("Enregistrer");
 		btnDelete = new Button("Supprimer");
@@ -55,7 +67,7 @@ public class DomaineForm extends FormLayout {
 		dataBinding();
 
 		buttons.addComponents(btnSave, btnDelete);
-		addComponents(tfName, taDescription, buttons);
+		addComponents(btnHideForm, tfName, tfUrl, taDescription, buttons);
 
 		MyBus.getInstance().register(this);
 	}
@@ -72,6 +84,7 @@ public class DomaineForm extends FormLayout {
 	 */
 	void dataBinding() {
 		binder.forField(tfName).asRequired("Ce champ est obligatoire").bind(DomaineBean::getName, DomaineBean::setName);
+		binder.forField(tfUrl).asRequired("Ce champ est obligatoire").bind(DomaineBean::getDomaineUrl, DomaineBean::setDomaineUrl);
 		binder.forField(taDescription).bind(DomaineBean::getDescription, DomaineBean::setDescription);
 	}
 
@@ -101,6 +114,10 @@ public class DomaineForm extends FormLayout {
 	void detectError() {
 		if (tfName.isEmpty()) {
 			tfName.setComponentError(new UserError("Ce champ est obligatoire"));
+		}
+		if (tfUrl.isEmpty()) {
+			tfUrl.setComponentError(new UserError("Ce cham est obligatoire"));
+		
 		}
 	}
 
