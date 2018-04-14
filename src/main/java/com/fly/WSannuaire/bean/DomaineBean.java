@@ -32,8 +32,6 @@ public class DomaineBean {
 
 	@Column(name = "NAME")
 	private String name;
-	@Column(name = "DOMAINE_URL")
-	private String domaineUrl;
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -66,14 +64,6 @@ public class DomaineBean {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getDomaineUrl() {
-		return domaineUrl;
-	}
-
-	public void setDomaineUrl(String domaineUrl) {
-		this.domaineUrl = domaineUrl;
 	}
 
 	public String getDescription() {

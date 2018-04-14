@@ -96,11 +96,7 @@ public class WebServiceView extends VerticalLayout implements View {
 	@Subscribe
 	void updatGrid(WebServiceEvent e) {
 		displayGrid(domaineBean);
-		try {
-			this.getUI().getUI().removeWindow(webServicePopUp);
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
+		this.getUI().getUI().removeWindow(webServicePopUp);
 	}
 
 	@Override
@@ -129,11 +125,12 @@ public class WebServiceView extends VerticalLayout implements View {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void settingGrid() {
 //		grid.setColumns("name", "urlBroker", "description", "methode", "developper");
-		grid.setColumns("name", "description", "methode", "developper");
+		grid.setColumns("name", "urlDirect", "description", "methode", "developper");
 		grid.getColumn("name").setCaption("Nom").setRenderer(new ButtonRenderer(e -> {
 			showPopUp((WebServiceBean) e.getItem());
 		}));
 //		grid.getColumn("urlBroker").setCaption("Url Broker");
+		grid.getColumn("urlDirect").setCaption("Url Direct");
 		grid.getColumn("description").setCaption("Description");
 		grid.getColumn("methode").setCaption("Methode");
 		grid.getColumn("developper").setCaption("Développeur");

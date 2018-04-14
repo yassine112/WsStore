@@ -74,7 +74,9 @@ public class UserServices extends EntityManagerHelper {
 	public UserBean getUsersByLogin(String login, String pass) {
 		try {
 			List<UserBean> user = getEntityManager().createNamedQuery("getUserByLogin").setParameter("login", login).setParameter("pass", pass).getResultList();
-			return user.get(0);
+			if (user.size() > 0) {
+				return user.get(0);
+			}
 		} catch (NoResultException e) {
 
 		}

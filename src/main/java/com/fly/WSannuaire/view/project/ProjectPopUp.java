@@ -80,8 +80,11 @@ public class ProjectPopUp extends Window {
 	@Subscribe
 	public void anableTab(AddTabEvent e) {
 		webServiceView = new WebServiceView(e.domaineBean);
+		// Added right now
+//		Constant.domaineUrl = e.domaineBean.getDomaineUrl();
 		webServiceView.setSizeFull();
 		domaineTabSheet.addTab(webServiceView, "Web Services du : " + e.domaineBean.getName()).setClosable(true);
+		domaineTabSheet.setSelectedTab(webServiceView);
 	}
 
 	/**

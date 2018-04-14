@@ -11,6 +11,7 @@ import com.fly.WSannuaire.service.ServerServices;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -31,6 +32,7 @@ public class DeployementForm extends FormLayout {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Button btnHideForm;
 	private TextField tfName;
 	private TextArea taDescription;
 	private ComboBox<ServerBean> cbServer;
@@ -47,6 +49,7 @@ public class DeployementForm extends FormLayout {
 		this.projectBean = projectBean;
 
 		setSizeUndefined();
+		btnHideForm = new Button();
 		tfName = new TextField("Nom");
 		taDescription = new TextArea("Description");
 		cbServer = new ComboBox<ServerBean>("Serveur");
@@ -57,6 +60,13 @@ public class DeployementForm extends FormLayout {
 		tfName.setWidth("250px");
 		taDescription.setWidth("250px");
 		cbServer.setWidth("250px");
+		
+		btnHideForm.setId("closeBtn");
+		btnHideForm.setIcon(VaadinIcons.CLOSE);
+		btnHideForm.addStyleName(ValoTheme.BUTTON_LINK);
+		btnHideForm.addClickListener(e -> {
+			setVisible(false);
+		});
 
 		btnSave = new Button("Enregistrer");
 		btnDelete = new Button("Supprimer");
@@ -68,7 +78,7 @@ public class DeployementForm extends FormLayout {
 		btnDelete.addClickListener(e -> delete());
 
 		HorizontalLayout buttons = new HorizontalLayout(btnSave, btnDelete);
-		addComponents(tfName, cbServer, taDescription, buttons);
+		addComponents(btnHideForm, tfName, cbServer, taDescription, buttons);
 
 		dataBinding();
 		MyBus.getInstance().register(this);

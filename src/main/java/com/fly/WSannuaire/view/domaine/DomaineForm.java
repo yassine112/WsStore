@@ -21,7 +21,7 @@ public class DomaineForm extends FormLayout {
 	private static final long serialVersionUID = 1L;
 	private Button btnHideForm;
 	private TextField tfName;
-	private TextField tfUrl;
+//	private TextField tfUrl;
 	private TextArea taDescription;
 
 	private Button btnSave, btnDelete;
@@ -41,11 +41,11 @@ public class DomaineForm extends FormLayout {
 		setSizeUndefined();
 		btnHideForm = new Button();
 		tfName = new TextField("Nom Domaine");
-		tfUrl = new TextField("Url Domaine");
+//		tfUrl = new TextField("Url Domaine");
 		taDescription = new TextArea("Description");
 
 		tfName.setWidth(250, Unit.PIXELS);
-		tfUrl.setWidth(250, Unit.PIXELS);
+//		tfUrl.setWidth(250, Unit.PIXELS);
 		taDescription.setWidth(250, Unit.PIXELS);
 		
 		btnHideForm.setId("closeBtn");
@@ -67,7 +67,8 @@ public class DomaineForm extends FormLayout {
 		dataBinding();
 
 		buttons.addComponents(btnSave, btnDelete);
-		addComponents(btnHideForm, tfName, tfUrl, taDescription, buttons);
+//		addComponents(btnHideForm, tfName, tfUrl, taDescription, buttons);
+		addComponents(btnHideForm, tfName, taDescription, buttons);
 
 		MyBus.getInstance().register(this);
 	}
@@ -84,7 +85,7 @@ public class DomaineForm extends FormLayout {
 	 */
 	void dataBinding() {
 		binder.forField(tfName).asRequired("Ce champ est obligatoire").bind(DomaineBean::getName, DomaineBean::setName);
-		binder.forField(tfUrl).asRequired("Ce champ est obligatoire").bind(DomaineBean::getDomaineUrl, DomaineBean::setDomaineUrl);
+//		binder.forField(tfUrl).asRequired("Ce champ est obligatoire").bind(DomaineBean::getDomaineUrl, DomaineBean::setDomaineUrl);
 		binder.forField(taDescription).bind(DomaineBean::getDescription, DomaineBean::setDescription);
 	}
 
@@ -115,10 +116,10 @@ public class DomaineForm extends FormLayout {
 		if (tfName.isEmpty()) {
 			tfName.setComponentError(new UserError("Ce champ est obligatoire"));
 		}
-		if (tfUrl.isEmpty()) {
-			tfUrl.setComponentError(new UserError("Ce cham est obligatoire"));
-		
-		}
+//		if (tfUrl.isEmpty()) {
+//			tfUrl.setComponentError(new UserError("Ce cham est obligatoire"));
+//		
+//		}
 	}
 
 	public void enabledDelete(boolean isNew) {
